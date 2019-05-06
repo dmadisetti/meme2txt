@@ -7,7 +7,10 @@ terminal.
 ## Dependencies
 
 In order to run, [img2txt.py](https://github.com/hit9/img2txt) is required. In
-addition, [toilet](http://caca.zoy.org/wiki/toilet) is recommended for quality memes.
+addition, [toilet](http://caca.zoy.org/wiki/toilet) is recommended for quality
+memes. You can also use the docker container script `meme2txt.docker` in place
+of `meme2txt` to avoid downloading cruft (just be sure to release special
+characters in your arguments).
 
 ## Usage
 

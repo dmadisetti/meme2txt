@@ -1,0 +1,7 @@
+#!/bin/bash
+CONTAINER=meme2txt
+[ ! "$(docker ps -a | grep $CONTAINER)" ] || \
+  docker build -t $CONTAINER . || \
+  {echo "Could not build docker container" || exit 1};
+
+docker run --rm -it --mount src="$(pwd)",target=/opt/meme2txt,type=bind --entrypoint=./meme2txt.sh $CONTAINER "${@}"

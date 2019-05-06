@@ -88,9 +88,9 @@ memeify() {
   local reset;
 
   length=$1; shift
-  text=$1; shift
-  line=$1; shift
-  offset=$1; shift
+  text=${1:-"Your meme text here"}; shift
+  line=${1:-$MARGIN}; shift
+  offset=${1:-$MARGIN}; shift
   color="$(colorize "${1:-30m}")"
   reset="$(reset "${color}")"
 

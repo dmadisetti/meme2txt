@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # meme2txt: A bash wrapper for img2txt.py to super-impose text on ASCII images.
 # Dependencies: img2txt.py, toilet (optional)
 # Author: Dylan Madisetti <contact at dylanmadisetti.com>
@@ -23,6 +23,12 @@
 ANSI_CAPTURE="(?:[\e]\[[^m\e]*[mK])?[^\e]?"
 TRAILING="s/[ \t]*$//"
 MARGIN=5
+SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
+
+# We copy over the needed dependencies to bin dir with nix.
+# Dependencies are perl and img2txt.py (and supported python)
+[[ "$SCRIPT_DIR" =~ ^/nix/store/.* ]] && PATH=$PATH:$SCRIPT_DIR
+IMG2TXT="${IMG2TXT:-img2txt.py}"
 
 instruct() {
   >&2 echo "Usage:
@@ -147,7 +153,7 @@ main(){
         # We pass all arguments between invocation and the first meme
         # declaration into img2txt.py. ANSI must be specified for obvious
         # reasons, so we do that for free.
-        img=$(img2txt.py --ansi "${@:1:$index}") || {
+        img=$($IMG2TXT --ansi "${@:1:$index}") || {
           instruct
           exit 1
         }

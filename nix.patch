@@ -1,0 +1,13 @@
+diff --git a/img2txt.py b/img2txt.py
+index 081bc81..8dc1d94 100755
+--- a/img2txt.py
++++ b/img2txt.py
+@@ -3,7 +3,7 @@
+ 
+ 
+ 
+-("""
++__doc__ = ("""
+ Usage:
+   img2txt.py <imgfile> [--maxLen=<n>] [--fontSize=<n>] [--color] [--ansi]"""
+     """[--bgcolor=<#RRGGBB>] [--targetAspect=<n>] [--antialias] [--dither] 
